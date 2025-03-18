@@ -392,7 +392,7 @@ function showPlayerTransactionModal() {
         <div class="modal-input" style="margin-bottom: 20px;">
             <label for="fromPlayerSelect" style="display: block; margin-bottom: 8px; font-weight: 500;">From Player:</label>
             <select id="fromPlayerSelect" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                ${players.map(player => `<option value="${player.id}">${player.name} - $${player.balance}</option>`).join('')}
+                ${players.map(player => `<option value="${player.id}">${player.name} - &#8377;${player.balance}</option>`).join('')}
             </select>
         </div>
         
