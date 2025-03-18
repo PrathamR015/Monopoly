@@ -204,7 +204,7 @@ return;
 availableProperties.forEach(prop => {
 const option = document.createElement('option');
 option.value = prop.name;
-option.textContent = `${prop.name} - &#8377;${prop.price}`;
+option.textContent = `${prop.name} - Rs. ${prop.price}`;
 propertySelect.appendChild(option);
 });
 
@@ -217,7 +217,7 @@ return;
 players.forEach(player => {
 const option = document.createElement('option');
 option.value = player.id;
-option.textContent = `${player.name} - &#8377;${player.balance}`;
+option.textContent = `${player.name} - Rs. ${player.balance}`;
 playerSelect.appendChild(option);
 });
 
@@ -475,7 +475,7 @@ function confirmPlayerTransaction() {
     
     // Display confirmation with reason if provided
     const reasonText = reason ? ` for ${reason}` : '';
-    alert(`${fromPlayer.name} paid &#8377;${amount} to ${toPlayer.name}${reasonText}`);
+    alert(`${fromPlayer.name} paid Rs. ${amount} to ${toPlayer.name}${reasonText}`);
     
     // Update display and close modal
     updatePlayersDisplay();
@@ -566,7 +566,7 @@ function confirmBankPayment() {
     player.balance -= amount;
     
     // Display confirmation
-    alert(`${player.name} paid &#8377;${amount} to the bank for ${reason}`);
+    alert(`${player.name} paid Rs. ${amount} to the bank for ${reason}`);
     
     // Update display and close modal
     updatePlayersDisplay();
@@ -658,7 +658,7 @@ function confirmRentPayment(propertyName) {
     owner.balance += property.rent;
     
     // Display confirmation
-    alert(`${payer.name} paid &#8377;${property.rent} rent to ${owner.name} for ${property.name}`);
+    alert(`${payer.name} paid Rs. ${property.rent} rent to ${owner.name} for ${property.name}`);
     
     // Update display and close modal
     updatePlayersDisplay();
