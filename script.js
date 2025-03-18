@@ -22,9 +22,6 @@ let players = [];
 let properties = [];
 let currentTransaction = null;
 
-function initializeProperties() {
-    // Add more properties as needed...
-}
 
 function addPlayer() {
     const nameInput = document.getElementById('newPlayerName');
@@ -111,11 +108,6 @@ function updatePropertyDisplay() {
     });
 }
 
-// Initialize the game when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    initializeProperties();
-    updatePropertyDisplay();
-});
 
 // Add remaining functions (showPropertyModal, transactions, etc.) here...
 function showPropertyModal() {
@@ -129,9 +121,6 @@ function cancelPropertyPurchase() {
     modal.style.display = 'none';
 }
 
-function confirmPropertyPurchase() {
-    // Handle property purchase...
-}
 
 function showTransactionModal(type, playerId) {
     const modal = document.getElementById('transactionModal');
@@ -144,10 +133,6 @@ function cancelTransaction() {
     modal.style.display = 'none';
 }
 
-function confirmTransaction() {
-    // Handle transaction...
-}
-// Add these functions to the existing JavaScript code
 
 function confirmPropertyPurchase() {
 const propertyName = document.getElementById('propertySelect').value;
@@ -248,7 +233,7 @@ properties.push(new Property("Guwahati", 60, "Brown", 2, "#955436"));
 // Light Blue properties
 properties.push(new Property("Panji (Goa)", 100, "Dark Blue", 6, "#0072bb"));
 properties.push(new Property("Agra", 100, "Dark Blue", 6, "#0072bb"));
-properties.push(new Property("Vadodara", 120, "Dark Blue", 8, "#"));
+properties.push(new Property("Vadodara", 120, "Dark Blue", 8, "#0072bb"));
 
 // Pink properties
 properties.push(new Property("Ludhiana", 140, "Pink", 10, "#d93a96"));
