@@ -23,11 +23,6 @@ let properties = [];
 let currentTransaction = null;
 
 function initializeProperties() {
-    properties.push(new Property("Mediterranean Avenue", 60, "Brown", 2, "#955436"));
-    properties.push(new Property("Baltic Avenue", 60, "Brown", 4, "#955436"));
-    properties.push(new Property("Oriental Avenue", 100, "Light Blue", 6, "#aae0fa"));
-    properties.push(new Property("Vermont Avenue", 100, "Light Blue", 6, "#aae0fa"));
-    properties.push(new Property("Connecticut Avenue", 120, "Light Blue", 8, "#aae0fa"));
     // Add more properties as needed...
 }
 
