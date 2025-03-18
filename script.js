@@ -70,7 +70,7 @@ function updatePlayersDisplay() {
 
         playerCard.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; color:rgb(0, 0, 0); margin-bottom: 10px;">${player.name}</div>
-            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377; &#8377;${player.balance}</div>
+            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377;${player.balance}</div>
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <button onclick="showTransactionModal('receive', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Receive Money</button>
                 <button onclick="showTransactionModal('pay', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Pay Money</button>
@@ -247,48 +247,48 @@ modal.style.display = 'flex';
 // Enhanced initialize properties function with complete property list
 function initializeProperties() {
 // Brown properties
-properties.push(new Property("Padra", 60, "Brown", 2, "#955436"));
-properties.push(new Property("Muktanand", 60, "Brown", 4, "#955436"));
+properties.push(new Property("Bhubaneshwar", 60, "Brown", 4, "#955436"));
+properties.push(new Property("Guwahati", 60, "Brown", 2, "#955436"));
 
 // Light Blue properties
-properties.push(new Property("Oriental Avenue", 100, "Light Blue", 6, "#aae0fa"));
-properties.push(new Property("Vermont Avenue", 100, "Light Blue", 6, "#aae0fa"));
-properties.push(new Property("Connecticut Avenue", 120, "Light Blue", 8, "#aae0fa"));
+properties.push(new Property("Panji (Goa)", 100, "Dark Blue", 6, "#0072bb"));
+properties.push(new Property("Agra", 100, "Dark Blue", 6, "#0072bb"));
+properties.push(new Property("Vadodara", 120, "Dark Blue", 8, "#"));
 
 // Pink properties
-properties.push(new Property("St. Charles Place", 140, "Pink", 10, "#d93a96"));
-properties.push(new Property("States Avenue", 140, "Pink", 10, "#d93a96"));
-properties.push(new Property("Virginia Avenue", 160, "Pink", 12, "#d93a96"));
+properties.push(new Property("Ludhiana", 140, "Pink", 10, "#d93a96"));
+properties.push(new Property("Patna", 140, "Pink", 10, "#d93a96"));
+properties.push(new Property("Bhopal", 160, "Pink", 12, "#d93a96"));
 
 // Orange properties
-properties.push(new Property("St. James Place", 180, "Orange", 14, "#f7921c"));
-properties.push(new Property("Tennessee Avenue", 180, "Orange", 14, "#f7921c"));
-properties.push(new Property("New York Avenue", 200, "Orange", 16, "#f7921c"));
+properties.push(new Property("Indore", 180, "Orange", 14, "#f7921c"));
+properties.push(new Property("Nagpur", 180, "Orange", 14, "#f7921c"));
+properties.push(new Property("Kochi", 200, "Orange", 16, "#f7921c"));
 
 // Red properties
-properties.push(new Property("Kentucky Avenue", 220, "Red", 18, "#ed1b24"));
-properties.push(new Property("Indiana Avenue", 220, "Red", 18, "#ed1b24"));
-properties.push(new Property("Illinois Avenue", 240, "Red", 20, "#ed1b24"));
+properties.push(new Property("Lucknow", 220, "Red", 18, "#ed1b24"));
+properties.push(new Property("Chandigarh", 220, "Red", 18, "#ed1b24"));
+properties.push(new Property("Jaipur", 240, "Red", 20, "#ed1b24"));
 
 // Yellow properties
-properties.push(new Property("Atlantic Avenue", 260, "Yellow", 22, "#fef200"));
-properties.push(new Property("Ventnor Avenue", 260, "Yellow", 22, "#fef200"));
-properties.push(new Property("Marvin Gardens", 280, "Yellow", 24, "#fef200"));
+properties.push(new Property("Pune", 260, "Yellow", 22, "#fef200"));
+properties.push(new Property("Hyderabad", 260, "Yellow", 22, "#fef200"));
+properties.push(new Property("Ahmedbad", 280, "Yellow", 24, "#fef200"));
 
 // Green properties
-properties.push(new Property("Pacific Avenue", 300, "Green", 26, "#1fb25a"));
-properties.push(new Property("North Carolina Avenue", 300, "Green", 26, "#1fb25a"));
-properties.push(new Property("Pennsylvania Avenue", 320, "Green", 28, "#1fb25a"));
+properties.push(new Property("Chennai", 300, "Green", 26, "#1fb25a"));
+properties.push(new Property("Kolkata", 300, "Green", 26, "#1fb25a"));
+properties.push(new Property("Bengaluru", 320, "Green", 28, "#1fb25a"));
 
 // Dark Blue properties
-properties.push(new Property("Park Place", 350, "Dark Blue", 35, "#0072bb"));
-properties.push(new Property("Boardwalk", 400, "Dark Blue", 50, "#0072bb"));
+properties.push(new Property("Delhi", 350, "Light Blue", 35, "#aae0fa"));
+properties.push(new Property("Mumbai", 400, "Light Blue", 50, "#aae0fa"));
 
 // Railroads
-properties.push(new Property("Reading Railroad", 200, "Railroad", 25, "#000000"));
-properties.push(new Property("Pennsylvania Railroad", 200, "Railroad", 25, "#000000"));
-properties.push(new Property("B. & O. Railroad", 200, "Railroad", 25, "#000000"));
-properties.push(new Property("Short Line", 200, "Railroad", 25, "#000000"));
+properties.push(new Property("Chennai Central Railway Station", 200, "Railroad", 25, "#000000"));
+properties.push(new Property("New Delhi Railway Station", 200, "Railroad", 25, "#000000"));
+properties.push(new Property("Howrah Railway Station", 200, "Railroad", 25, "#000000"));
+properties.push(new Property("Chhatrapati Shivaji Terminus", 200, "Railroad", 25, "#000000"));
 
 // Utilities
 properties.push(new Property("Electric Company", 150, "Utility", 0, "#999999"));
@@ -419,7 +419,7 @@ function showPlayerTransactionModal() {
         <div class="modal-input" style="margin-bottom: 20px;">
             <label for="toPlayerSelect" style="display: block; margin-bottom: 8px; font-weight: 500;">To Player:</label>
             <select id="toPlayerSelect" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                ${players.map(player => `<option value="${player.id}">${player.name} - &#8377;${player.balance}</option>`).join('')}
+                ${players.map(player => `<option value="${player.id}">${player.name} - Rs. ${player.balance}</option>`).join('')}
             </select>
         </div>
         
