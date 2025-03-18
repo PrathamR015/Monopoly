@@ -104,8 +104,8 @@ function updatePropertyDisplay() {
                 <div style="background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
                     <span style="width: 20px; height: 20px; border-radius: 50%; display: inline-block; margin-right: 10px; background-color: ${prop.color};"></span>
                     <strong>${prop.name}</strong><br>
-                    Price: $${prop.price}<br>
-                    Rent: $${prop.rent}<br>
+                    Price: &#8377;${prop.price}<br>
+                    Rent: &#8377;${prop.rent}<br>
                     Owner: ${prop.owner ? prop.owner : 'Bank'}
                 </div>
             `;
@@ -350,7 +350,7 @@ if (payingPlayer.balance >= totalAmount) {
     });
     payingPlayer.balance -= totalAmount;
     updatePlayersDisplay();
-    alert(`${payingPlayer.name} paid $${amount} to each player`);
+    alert(`${payingPlayer.name} paid &#8377;${amount} to each player`);
 } else {
     alert('Insufficient funds!');
 }
@@ -362,12 +362,12 @@ alert('Player not found!');
 function handleDrawCard() {
     // Sample cards - in a real implementation, this would be a larger array with more varied effects
     const cards = [
-        { type: "Chance", text: "Advance to GO. Collect $200.", action: "collect", amount: 200 },
-        { type: "Chance", text: "Bank pays you dividend of $50.", action: "collect", amount: 50 },
-        { type: "Chance", text: "Pay poor tax of $15.", action: "pay", amount: 15 },
-        { type: "Community Chest", text: "From sale of stock you get $45.", action: "collect", amount: 45 },
-        { type: "Community Chest", text: "Doctor's fee. Pay $50.", action: "pay", amount: 50 },
-        { type: "Community Chest", text: "Holiday fund matures. Collect $100.", action: "collect", amount: 100 }
+        { type: "Chance", text: "Advance to GO. Collect &#8377;200.", action: "collect", amount: 200 },
+        { type: "Chance", text: "Bank pays you dividend of &#8377;50.", action: "collect", amount: 50 },
+        { type: "Chance", text: "Pay poor tax of &#8377;15.", action: "pay", amount: 15 },
+        { type: "Community Chest", text: "From sale of stock you get &#8377;45.", action: "collect", amount: 45 },
+        { type: "Community Chest", text: "Doctor's fee. Pay &#8377;50.", action: "pay", amount: 50 },
+        { type: "Community Chest", text: "Holiday fund matures. Collect &#8377;100.", action: "collect", amount: 100 }
     ];
     
     // Select random card
@@ -419,7 +419,7 @@ function showPlayerTransactionModal() {
         <div class="modal-input" style="margin-bottom: 20px;">
             <label for="toPlayerSelect" style="display: block; margin-bottom: 8px; font-weight: 500;">To Player:</label>
             <select id="toPlayerSelect" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                ${players.map(player => `<option value="${player.id}">${player.name} - $${player.balance}</option>`).join('')}
+                ${players.map(player => `<option value="${player.id}">${player.name} - &#8377;${player.balance}</option>`).join('')}
             </select>
         </div>
         
@@ -495,7 +495,7 @@ function confirmPlayerTransaction() {
     
     // Display confirmation with reason if provided
     const reasonText = reason ? ` for ${reason}` : '';
-    alert(`${fromPlayer.name} paid $${amount} to ${toPlayer.name}${reasonText}`);
+    alert(`${fromPlayer.name} paid &#8377;${amount} to ${toPlayer.name}${reasonText}`);
     
     // Update display and close modal
     updatePlayersDisplay();
@@ -519,7 +519,7 @@ function payBank() {
         <div class="modal-input" style="margin-bottom: 20px;">
             <label for="playerSelectBank" style="display: block; margin-bottom: 8px; font-weight: 500;">Player:</label>
             <select id="playerSelectBank" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                ${players.map(player => `<option value="${player.id}">${player.name} - $${player.balance}</option>`).join('')}
+                ${players.map(player => `<option value="${player.id}">${player.name} - &#8377;${player.balance}</option>`).join('')}
             </select>
         </div>
         
@@ -586,7 +586,7 @@ function confirmBankPayment() {
     player.balance -= amount;
     
     // Display confirmation
-    alert(`${player.name} paid $${amount} to the bank for ${reason}`);
+    alert(`${player.name} paid &#8377;${amount} to the bank for ${reason}`);
     
     // Update display and close modal
     updatePlayersDisplay();
@@ -627,13 +627,13 @@ function payRent(propertyName) {
         
         <div style="margin-bottom: 15px; padding: 10px; background-color: ${property.color}; color: white; border-radius: 8px; text-align: center;">
             <p style="margin: 0;">Property Owner: ${owner.name}</p>
-            <p style="margin: 5px 0 0 0; font-size: 1.2em; font-weight: bold;">Rent: $${property.rent}</p>
+            <p style="margin: 5px 0 0 0; font-size: 1.2em; font-weight: bold;">Rent: &#8377;${property.rent}</p>
         </div>
         
         <div class="modal-input" style="margin-bottom: 20px;">
             <label for="rentPayerSelect" style="display: block; margin-bottom: 8px; font-weight: 500;">Paying Player:</label>
             <select id="rentPayerSelect" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                ${potentialPayers.map(player => `<option value="${player.id}">${player.name} - $${player.balance}</option>`).join('')}
+                ${potentialPayers.map(player => `<option value="${player.id}">${player.name} - &#8377;${player.balance}</option>`).join('')}
             </select>
         </div>
         
@@ -678,7 +678,7 @@ function confirmRentPayment(propertyName) {
     owner.balance += property.rent;
     
     // Display confirmation
-    alert(`${payer.name} paid $${property.rent} rent to ${owner.name} for ${property.name}`);
+    alert(`${payer.name} paid &#8377;${property.rent} rent to ${owner.name} for ${property.name}`);
     
     // Update display and close modal
     updatePlayersDisplay();
@@ -726,8 +726,8 @@ function updatePropertyDisplay() {
                     <div style="margin-bottom: 5px;">
                         <strong>${prop.name}</strong>
                         <div style="display: flex; justify-content: space-between; margin-top: 5px;">
-                            <span>Price: $${prop.price}</span>
-                            <span>Rent: $${prop.rent}</span>
+                            <span>Price: &#8377;${prop.price}</span>
+                            <span>Rent: &#8377;${prop.rent}</span>
                         </div>
                         <div style="margin-top: 8px;">
                             <span>Owner: <strong>${ownerInfo}</strong></span>
