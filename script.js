@@ -330,7 +330,7 @@ if (payingPlayer.balance >= totalAmount) {
     });
     payingPlayer.balance -= totalAmount;
     updatePlayersDisplay();
-    alert(`${payingPlayer.name} paid &#8377;${amount} to each player`);
+    alert(`${payingPlayer.name} paid Rs;${amount} to each player`);
 } else {
     alert('Insufficient funds!');
 }
