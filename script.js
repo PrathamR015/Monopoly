@@ -70,7 +70,7 @@ function updatePlayersDisplay() {
 
         playerCard.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; color:rgb(0, 0, 0); margin-bottom: 10px;">${player.name}</div>
-            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377;${player.balance}</div>
+            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377; &#8377;${player.balance}</div>
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <button onclick="showTransactionModal('receive', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Receive Money</button>
                 <button onclick="showTransactionModal('pay', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Pay Money</button>
@@ -224,7 +224,7 @@ return;
 availableProperties.forEach(prop => {
 const option = document.createElement('option');
 option.value = prop.name;
-option.textContent = `${prop.name} - $${prop.price}`;
+option.textContent = `${prop.name} - &#8377;${prop.price}`;
 propertySelect.appendChild(option);
 });
 
@@ -237,7 +237,7 @@ return;
 players.forEach(player => {
 const option = document.createElement('option');
 option.value = player.id;
-option.textContent = `${player.name} - $${player.balance}`;
+option.textContent = `${player.name} - &#8377;${player.balance}`;
 playerSelect.appendChild(option);
 });
 
