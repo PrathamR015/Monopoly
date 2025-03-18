@@ -70,7 +70,7 @@ function updatePlayersDisplay() {
 
         playerCard.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; color:rgb(0, 0, 0); margin-bottom: 10px;">${player.name}</div>
-            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;">&#8377; ${player.balance}</div>
+            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377;${player.balance}</div>
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <button onclick="showTransactionModal('receive', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Receive Money</button>
                 <button onclick="showTransactionModal('pay', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Pay Money</button>
