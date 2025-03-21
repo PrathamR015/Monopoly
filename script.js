@@ -231,7 +231,7 @@ properties.push(new Property("Bhubaneshwar", 60, "Brown", 4, "#955436"));
 properties.push(new Property("Guwahati", 60, "Brown", 2, "#955436"));
 
 // Light Blue properties
-properties.push(new Property("Panji (Goa)", 100, "Dark Blue", 6, "#0072bb"));
+properties.push(new Property("Goa", 100, "Dark Blue", 6, "#0072bb"));
 properties.push(new Property("Agra", 100, "Dark Blue", 6, "#0072bb"));
 properties.push(new Property("Vadodara", 120, "Dark Blue", 8, "#0072bb"));
 
