@@ -23,6 +23,31 @@ let properties = [];
 let currentTransaction = null;
 
 
+function loadData() {
+    const storedPlayers = localStorage.getItem('monopolyPlayers');
+    const storedProperties = localStorage.getItem('monopolyProperties');
+
+    if (storedPlayers) {
+        players = JSON.parse(storedPlayers);
+    }
+
+    if (storedProperties) {
+        properties = JSON.parse(storedProperties);
+    } else {
+        // Initialize properties if not found in LocalStorage
+        initializeProperties();
+    }
+
+    updatePlayersDisplay();
+    updatePropertyDisplay();
+}
+
+
+function saveData() {
+    localStorage.setItem('monopolyPlayers', JSON.stringify(players));
+    localStorage.setItem('monopolyProperties', JSON.stringify(properties));
+}
+
 function addPlayer() {
     const nameInput = document.getElementById('newPlayerName');
     const name = nameInput.value.trim();
@@ -33,6 +58,7 @@ function addPlayer() {
         nameInput.value = '';
         updatePlayersDisplay();
         updatePropertyDisplay();
+        saveData();
     }
 }
 
@@ -135,53 +161,48 @@ function cancelTransaction() {
 
 
 function confirmPropertyPurchase() {
-const propertyName = document.getElementById('propertySelect').value;
-const playerId = document.getElementById('playerSelect').value;
-const property = properties.find(p => p.name === propertyName);
-const player = players.find(p => p.id === playerId);
+    const propertyName = document.getElementById('propertySelect').value;
+    const playerId = document.getElementById('playerSelect').value;
+    const property = properties.find(p => p.name === propertyName);
+    const player = players.find(p => p.id === playerId);
 
-if (!property || !player) {
-alert('Please select a valid property and player');
-return;
-}
+    if (!property || !player) {
+        alert('Please select a valid property and player');
+        return;
+    }
 
-// Check if player has enough money
-if (player.balance < property.price) {
-alert('Insufficient funds to purchase this property!');
-return;
-}
+    if (player.balance < property.price) {
+        alert('Insufficient funds to purchase this property!');
+        return;
+    }
 
-// Process the purchase
-player.balance -= property.price;
-property.owner = player.name;
-player.properties.push(property);
+    player.balance -= property.price;
+    property.owner = player.name;
+    player.properties.push(property);
 
-// Update displays
-updatePlayersDisplay();
-updatePropertyDisplay();
-cancelPropertyPurchase();
+    updatePlayersDisplay();
+    updatePropertyDisplay();
+    cancelPropertyPurchase();
+    saveData(); // Save data to LocalStorage
 }
 
 function sellProperty(playerId, propertyName) {
-const player = players.find(p => p.id === playerId);
-const property = properties.find(p => p.name === propertyName);
+    const player = players.find(p => p.id === playerId);
+    const property = properties.find(p => p.name === propertyName);
 
-if (!player || !property) {
-alert('Invalid player or property');
-return;
-}
+    if (!player || !property) {
+        alert('Invalid player or property');
+        return;
+    }
 
-// Calculate sell price (half of original price)
-const sellPrice = Math.floor(property.price / 2);
+    const sellPrice = Math.floor(property.price / 2);
+    player.balance += sellPrice;
+    property.owner = null;
+    player.properties = player.properties.filter(p => p.name !== propertyName);
 
-// Process the sale
-player.balance += sellPrice;
-property.owner = null;
-player.properties = player.properties.filter(p => p.name !== propertyName);
-
-// Update displays
-updatePlayersDisplay();
-updatePropertyDisplay();
+    updatePlayersDisplay();
+    updatePropertyDisplay();
+    saveData(); // Save data to LocalStorage
 }
 
 // Enhanced property modal display
@@ -744,6 +765,7 @@ function updateActionButtons() {
 
 // Update existing function to include our new button
 document.addEventListener('DOMContentLoaded', () => {
+    loadData();
     initializeProperties();
     updatePropertyDisplay();
     updateActionButtons();
@@ -753,4 +775,5 @@ document.addEventListener('DOMContentLoaded', () => {
 function removePlayer(playerId) {
     players = players.filter(p => p.id !== playerId);
     updatePlayersDisplay();
+    saveData(); // Save data to LocalStorage
 }
