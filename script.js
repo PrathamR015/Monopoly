@@ -30,14 +30,6 @@ function loadData() {
     if (storedPlayers) {
         players = JSON.parse(storedPlayers);
     }
-
-    if (storedProperties) {
-        properties = JSON.parse(storedProperties);
-    } else {
-        // Initialize properties if not found in LocalStorage
-        initializeProperties();
-    }
-
     updatePlayersDisplay();
     updatePropertyDisplay();
 }
