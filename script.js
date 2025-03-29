@@ -284,8 +284,8 @@ properties.push(new Property("Howrah Railway Station", 200, "Railroad", 25, "#00
 properties.push(new Property("Chhatrapati Shivaji Terminus", 200, "Railroad", 25, "#000000"));
 
 // Utilities
-properties.push(new Property("Electric Company", 150, "Utility", 0, "#999999"));
-properties.push(new Property("Water Works", 150, "Utility", 0, "#999999"));
+properties.push(new Property("Electric Company", 150, "Utility", "4*dice or 10*dice if both utilities owned" , "#999999"));
+properties.push(new Property("Water Works", 150, "Utility", "4*dice or 10*dice if both utilities owned", "#999999"));
 }
 
 // Add transaction confirmation functions
@@ -769,3 +769,84 @@ function removePlayer(playerId) {
     updatePlayersDisplay();
     saveData(); // Save data to LocalStorage
 }
+
+// Add this function to reset local data
+// Preset passkey (you can change this to any value)
+const PRESET_PASSKEY = "1415";
+
+// Function to show the passkey modal
+function showPasskeyModal() {
+    const modal = document.createElement('div');
+    modal.id = 'passkeyModal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;';
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'passkey-modal';
+    modalContent.style.cssText = 'background-color: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 400px; max-width: 90%;';
+
+    modalContent.innerHTML = `
+        <h2 class="modal-title" style="text-align: center; margin-bottom: 20px; color:rgb(255, 0, 0);">Reset Data</h2>
+        <div class="modal-input" style="margin-bottom: 20px;">
+            <label for="passkeyInput" style="display: block; margin-bottom: 8px; font-weight: 500;">Enter Passkey:</label>
+            <input type="password" id="passkeyInput" placeholder="Enter passkey" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+        </div>
+        <div class="modal-actions" style="display: flex; justify-content: flex-end; gap: 15px;">
+            <button onclick="cancelPasskeyModal()" style="padding: 10px 15px;"><i class="fas fa-times"></i> Cancel</button>
+            <button onclick="confirmPasskey()" style="padding: 10px 15px;"><i class="fas fa-check"></i> Confirm</button>
+        </div>
+    `;
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+}
+
+// Function to cancel the passkey modal
+function cancelPasskeyModal() {
+    const modal = document.getElementById('passkeyModal');
+    if (modal) {
+        document.body.removeChild(modal);
+    }
+}
+
+// Function to confirm the passkey and reset data
+function confirmPasskey() {
+    const passkeyInput = document.getElementById('passkeyInput').value;
+
+    if (passkeyInput === PRESET_PASSKEY) {
+        // Passkey is correct, reset data
+        resetLocalData();
+        cancelPasskeyModal(); // Close the modal
+    } else {
+        // Passkey is incorrect, show error
+        alert('Incorrect passkey! Data was not reset.');
+    }
+}
+
+// Function to reset local data
+function resetLocalData() {
+    // Clear localStorage
+    localStorage.removeItem('monopolyPlayers');
+    localStorage.removeItem('monopolyProperties');
+
+    // Reset players and properties arrays
+    players = [];
+    properties = [];
+
+    // Reinitialize properties (if needed)
+    initializeProperties();
+
+    // Update the UI to reflect the reset state
+    updatePlayersDisplay();
+    updatePropertyDisplay();
+
+    // Show a confirmation message
+    alert('Local data has been reset successfully!');
+}
+
+// Update the reset button to show the passkey modal
+function resetDataWithPasskey() {
+    showPasskeyModal();
+}
+// Example of how to call the reset function
+// You can add a button in your HTML to trigger this function
+// <button onclick="resetLocalData()">Reset Data</button>
