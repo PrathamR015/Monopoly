@@ -80,7 +80,7 @@ function updatePlayersDisplay() {
 
         playerCard.innerHTML = `
             <div style="font-size: 1.2em; font-weight: bold; color:rgb(0, 0, 0); margin-bottom: 10px;">${player.name}</div>
-            <div style="font-size: 1.5em; color:rgb(0, 255, 106); margin-bottom: 15px;"> &#8377;${player.balance}</div>
+            <div style="font-size: 1.5em; color:rgb(21, 255, 0); margin-bottom: 15px;"> &#8377;${player.balance}</div>
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <button onclick="showTransactionModal('receive', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Receive Money</button>
                 <button onclick="showTransactionModal('pay', '${player.id}')" style="background-color:rgb(122, 26, 26); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Pay Money</button>
@@ -127,11 +127,10 @@ function updatePropertyDisplay() {
 }
 
 
-// Add remaining functions (showPropertyModal, transactions, etc.) here...
 function showPropertyModal() {
     const modal = document.getElementById('propertyModal');
     modal.style.display = 'flex';
-    // Populate selects...
+
 }
 
 function cancelPropertyPurchase() {
@@ -197,17 +196,14 @@ function sellProperty(playerId, propertyName) {
     saveData(); // Save data to LocalStorage
 }
 
-// Enhanced property modal display
 function showPropertyModal() {
 const modal = document.getElementById('propertyModal');
 const propertySelect = document.getElementById('propertySelect');
 const playerSelect = document.getElementById('playerSelect');
 
-// Clear previous options
 propertySelect.innerHTML = '';
 playerSelect.innerHTML = '';
 
-// Add available properties
 const availableProperties = properties.filter(p => !p.owner);
 if (availableProperties.length === 0) {
 alert('No properties available for purchase!');
@@ -221,7 +217,6 @@ option.textContent = `${prop.name} - Rs. ${prop.price}`;
 propertySelect.appendChild(option);
 });
 
-// Add players
 if (players.length === 0) {
 alert('Add players before buying properties!');
 return;
@@ -237,7 +232,6 @@ playerSelect.appendChild(option);
 modal.style.display = 'flex';
 }
 
-// Enhanced initialize properties function with complete property list
 function initializeProperties() {
 // Brown properties
 properties.push(new Property("Bhubaneshwar", 60, "Brown", 4, "#955436"));
@@ -284,8 +278,8 @@ properties.push(new Property("Howrah Railway Station", 200, "Railroad", 25, "#00
 properties.push(new Property("Chhatrapati Shivaji Terminus", 200, "Railroad", 25, "#000000"));
 
 // Utilities
-properties.push(new Property("Electric Company", 150, "Utility", "4*dice or 10*dice if both utilities owned" , "#999999"));
-properties.push(new Property("Water Works", 150, "Utility", "4*dice or 10*dice if both utilities owned", "#999999"));
+properties.push(new Property("Electric Company", 150, "Utility", "0" , "#999999"));
+properties.push(new Property("Water Works", 150, "Utility", "0", "#999999"));
 }
 
 // Add transaction confirmation functions
@@ -316,16 +310,7 @@ updatePlayersDisplay();
 cancelTransaction();
 }
 
-// Add function to collect salary
-function collectSalary() {
-players.forEach(player => {
-player.balance += 200;
-});
-updatePlayersDisplay();
-alert('Each player collected $200 for passing GO!');
-}
 
-// Add function to pay all players
 function payAllPlayers() {
 const amount = parseInt(prompt('Enter amount to pay to each player:'));
 if (!amount || isNaN(amount)) return;
@@ -352,53 +337,15 @@ alert('Player not found!');
 }
 }
 
-function handleDrawCard() {
-    // Sample cards - in a real implementation, this would be a larger array with more varied effects
-    const cards = [
-        { type: "Chance", text: "Advance to GO. Collect &#8377;200.", action: "collect", amount: 200 },
-        { type: "Chance", text: "Bank pays you dividend of &#8377;50.", action: "collect", amount: 50 },
-        { type: "Chance", text: "Pay poor tax of &#8377;15.", action: "pay", amount: 15 },
-        { type: "Community Chest", text: "From sale of stock you get &#8377;45.", action: "collect", amount: 45 },
-        { type: "Community Chest", text: "Doctor's fee. Pay &#8377;50.", action: "pay", amount: 50 },
-        { type: "Community Chest", text: "Holiday fund matures. Collect &#8377;100.", action: "collect", amount: 100 }
-    ];
-    
-    // Select random card
-    const card = cards[Math.floor(Math.random() * cards.length)];
-    const currentPlayer = gameState.players[gameState.currentPlayerIndex];
-    
-    // Apply card effect
-    if (card.action === "collect") {
-        currentPlayer.cash += card.amount;
-        currentPlayer.netWorth += card.amount;
-    } else if (card.action === "pay") {
-        currentPlayer.cash -= card.amount;
-        currentPlayer.netWorth -= card.amount;
-    }
-    
-    // Add to activity log
-    addActivity(`${currentPlayer.name} drew a ${card.type} card: "${card.text}"`);
-    
-    // Update UI
-    updateCurrentPlayerDisplay();
-    
-    // Show card in a popup
-    alert(`${card.type} Card: ${card.text}`);
-}
-// Add these functions to your existing script.js file
-
-// Function to show transaction modal between players
 function showPlayerTransactionModal() {
     const modal = document.createElement('div');
     modal.id = 'playerTransactionModal';
     modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;';
-    
-    // Create modal content
+   
     const modalContent = document.createElement('div');
     modalContent.className = 'transaction-modal';
     modalContent.style.cssText = 'background-color: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 400px; max-width: 90%;';
-    
-    // Add form elements
+
     modalContent.innerHTML = `
         <h2 class="modal-title" style="text-align: center; margin-bottom: 20px; color:rgb(255, 2, 2);">Player Transaction</h2>
         
@@ -432,17 +379,14 @@ function showPlayerTransactionModal() {
         </div>
     `;
     
-    // Add to document
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    // Ensure the first two players are different
     if (players.length > 1) {
         document.getElementById('toPlayerSelect').selectedIndex = 1;
     }
 }
 
-// Function to cancel player transaction
 function cancelPlayerTransaction() {
     const modal = document.getElementById('playerTransactionModal');
     if (modal) {
@@ -450,14 +394,12 @@ function cancelPlayerTransaction() {
     }
 }
 
-// Function to confirm and process player transaction
 function confirmPlayerTransaction() {
     const fromPlayerId = document.getElementById('fromPlayerSelect').value;
     const toPlayerId = document.getElementById('toPlayerSelect').value;
     const amount = parseInt(document.getElementById('playerTransactionAmount').value);
     const reason = document.getElementById('transactionReason').value;
     
-    // Validate inputs
     if (fromPlayerId === toPlayerId) {
         alert('Cannot transfer money to the same player');
         return;
@@ -476,28 +418,23 @@ function confirmPlayerTransaction() {
         return;
     }
     
-    // Check if payer has enough funds
     if (fromPlayer.balance < amount) {
         alert(`${fromPlayer.name} does not have enough money for this transaction`);
         return;
     }
     
-    // Process the transaction
     fromPlayer.balance -= amount;
     toPlayer.balance += amount;
     
-    // Display confirmation with reason if provided
     const reasonText = reason ? ` for ${reason}` : '';
     alert(`${fromPlayer.name} paid Rs. ${amount} to ${toPlayer.name}${reasonText}`);
     
-    // Update display and close modal
     updatePlayersDisplay();
     cancelPlayerTransaction();
 }
 
-// Add function to pay bank (e.g., for taxes, penalties)
+// Add function to pay bank 
 function payBank() {
-    // Create a simplified version of transaction modal
     const modal = document.createElement('div');
     modal.id = 'payBankModal';
     modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;';
@@ -574,14 +511,10 @@ function confirmBankPayment() {
         alert(`${player.name} does not have enough money`);
         return;
     }
-    
-    // Process the payment
     player.balance -= amount;
     
-    // Display confirmation
     alert(`${player.name} paid Rs. ${amount} to the bank for ${reason}`);
     
-    // Update display and close modal
     updatePlayersDisplay();
     cancelBankPayment();
 }
@@ -595,15 +528,12 @@ function payRent(propertyName) {
         return;
     }
     
-    // Find the owner
     const owner = players.find(p => p.name === property.owner);
     
     if (!owner) {
         alert('Property owner not found in the game');
         return;
     }
-    
-    // Create a modal for rent payment
     const modal = document.createElement('div');
     modal.id = 'rentPaymentModal';
     modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;';
@@ -612,7 +542,6 @@ function payRent(propertyName) {
     modalContent.className = 'transaction-modal';
     modalContent.style.cssText = 'background-color: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 400px; max-width: 90%;';
     
-    // Filter out the owner from the payers list
     const potentialPayers = players.filter(p => p.name !== owner.name);
     
     modalContent.innerHTML = `
@@ -659,21 +588,16 @@ function confirmRentPayment(propertyName) {
         alert('Invalid transaction details');
         return;
     }
-    
-    // Check if payer has enough funds
     if (payer.balance < property.rent) {
         alert(`${payer.name} does not have enough money to pay rent`);
         return;
     }
     
-    // Process the rent payment
     payer.balance -= property.rent;
     owner.balance += property.rent;
     
-    // Display confirmation
     alert(`${payer.name} paid Rs. ${property.rent} rent to ${owner.name} for ${property.name}`);
     
-    // Update display and close modal
     updatePlayersDisplay();
     cancelRentPayment();
 }
@@ -696,7 +620,6 @@ function updatePropertyDisplay() {
         groupDiv.className = 'property-group';
         groupDiv.style.cssText = 'border-radius: 10px; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); background-color: white; margin-bottom: 20px;';
         
-        // Get color from first property in the group
         const groupColor = props[0].color;
         
         let groupHtml = `
@@ -771,8 +694,7 @@ function removePlayer(playerId) {
 }
 
 // Add this function to reset local data
-// Preset passkey (you can change this to any value)
-const PRESET_PASSKEY = "1415";
+const PRESET_PASSKEY = "0000";
 
 // Function to show the passkey modal
 function showPasskeyModal() {
@@ -813,40 +735,30 @@ function confirmPasskey() {
     const passkeyInput = document.getElementById('passkeyInput').value;
 
     if (passkeyInput === PRESET_PASSKEY) {
-        // Passkey is correct, reset data
         resetLocalData();
-        cancelPasskeyModal(); // Close the modal
+        cancelPasskeyModal(); 
     } else {
-        // Passkey is incorrect, show error
         alert('Incorrect passkey! Data was not reset.');
     }
 }
 
 // Function to reset local data
 function resetLocalData() {
-    // Clear localStorage
+
     localStorage.removeItem('monopolyPlayers');
     localStorage.removeItem('monopolyProperties');
 
-    // Reset players and properties arrays
     players = [];
     properties = [];
 
-    // Reinitialize properties (if needed)
     initializeProperties();
 
-    // Update the UI to reflect the reset state
     updatePlayersDisplay();
     updatePropertyDisplay();
 
-    // Show a confirmation message
     alert('Local data has been reset successfully!');
 }
 
-// Update the reset button to show the passkey modal
 function resetDataWithPasskey() {
     showPasskeyModal();
 }
-// Example of how to call the reset function
-// You can add a button in your HTML to trigger this function
-// <button onclick="resetLocalData()">Reset Data</button>
